@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ammar Mohamed N | Embedded Firmware & Digital Design</title> <!--[cite: 1, 3] -->
-  <meta name="description" content="Portfolio of Ammar Mohamed N — Final-year B.Tech ECE (Cyber-Physical Systems) student at SASTRA University specializing in Embedded Firmware, STM32, and FPGA Digital Design." /> <!--[cite: 1] -->
+  <title>Ammar Mohamed — Embedded & FPGA Portfolio</title> <!--[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #0b0f19;
-      --bg-secondary: #111827;
-      --bg-card: rgba(17, 24, 39, 0.75);
-      --border-subtle: #1e293b;
-      --border-highlight: #38bdf8;
-      --text-main: #f8fafc;
+      --bg: #07090e;
+      --bg-elevated: #0f1420;
+      --bg-card: rgba(15, 20, 32, 0.75);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(56, 189, 248, 0.45);
+      --text: #f1f5f9;
       --text-muted: #94a3b8;
-      --accent-cyan: #38bdf8;
-      --accent-teal: #2dd4bf;
-      --accent-green: #10b981;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --accent: #38bdf8;
+      --accent-2: #2dd4bf;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -30,848 +29,1016 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      line-height: 1.65;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 85% 12%, rgba(56, 189, 248, 0.07), transparent 35%),
-        radial-gradient(circle at 15% 80%, rgba(45, 212, 191, 0.05), transparent 35%),
-        linear-gradient(to right, rgba(30, 41, 59, 0.22) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* Subtle Ambient Glows */
+    .ambient-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-1 { top: -200px; right: -100px; background: var(--accent); }
+    .glow-2 { bottom: -200px; left: -150px; background: var(--accent-2); }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
     }
 
     a {
       color: inherit;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
-    .container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Sticky Top Navigation */
+    /* Floating Glass Navbar */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(12px);
-      background: rgba(11, 15, 25, 0.85);
-      border-bottom: 1px solid var(--border-subtle);
+      position: fixed;
+      top: 1.25rem;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 0 1rem;
     }
 
-    .nav-bar {
+    .nav-pill {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      height: 68px;
+      gap: 2.5rem;
+      background: rgba(15, 20, 32, 0.8);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      padding: 0.7rem 1.5rem;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
     }
 
-    .brand {
-      font-family: var(--font-mono);
+    .logo {
+      font-family: var(--mono);
       font-weight: 600;
-      font-size: 1.05rem;
-      letter-spacing: 0.5px;
+      font-size: 0.95rem;
+      color: var(--text);
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
-    .brand-dot {
-      width: 9px;
-      height: 9px;
-      background-color: var(--accent-cyan);
-      border-radius: 2px;
-      box-shadow: 0 0 10px var(--accent-cyan);
+    .logo span {
+      color: var(--accent);
     }
 
     .nav-links {
       display: flex;
       gap: 1.75rem;
       list-style: none;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      font-weight: 500;
       color: var(--text-muted);
     }
 
     .nav-links a:hover {
-      color: var(--accent-cyan);
+      color: var(--text);
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .nav-cta:hover {
+      background: var(--accent);
+      color: #07090e;
     }
 
     /* Hero Section */
     .hero {
-      padding: 5.5rem 0 4rem;
-      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 3rem;
+      padding: 7rem 0 4rem;
     }
 
-    .status-pill {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent-2);
+      background: rgba(45, 212, 191, 0.08);
+      border: 1px solid rgba(45, 212, 191, 0.25);
       padding: 0.35rem 0.85rem;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
       border-radius: 999px;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: #34d399;
       margin-bottom: 1.5rem;
-    }
-
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      background-color: var(--accent-green);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(1.25); }
     }
 
     .hero h1 {
-      font-size: clamp(2.25rem, 5vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
+      font-size: clamp(2.5rem, 5.2vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
     }
 
-    .hero-subtitle {
-      font-family: var(--font-mono);
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
-      color: var(--accent-cyan);
+    .gradient-text {
+      background: linear-gradient(90deg, #38bdf8, #2dd4bf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .typewriter-row {
+      font-family: var(--mono);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
       margin-bottom: 1.5rem;
-      font-weight: 500;
+      min-height: 1.8em;
     }
 
-    .hero-bio {
-      max-width: 720px;
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.1em;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-left: 4px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .hero-desc {
       color: var(--text-muted);
       font-size: 1.05rem;
-      margin-bottom: 2rem;
+      max-width: 560px;
+      margin-bottom: 2.25rem;
     }
 
-    .hero-bio p + p {
-      margin-top: 0.85rem;
-    }
-
-    .hero-actions {
+    .hero-btns {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .btn {
-      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.35rem;
-      border-radius: 8px;
-      font-weight: 500;
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
     }
 
     .btn-primary {
-      background: var(--accent-cyan);
-      color: #0b0f19;
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.8rem 1.6rem;
+      border-radius: 10px;
       font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .btn-primary:hover {
-      background: #7dd3fc;
-      transform: translateY(-1px);
+      background: var(--accent);
+      transform: translateY(-2px);
     }
 
-    .btn-outline {
-      background: rgba(30, 41, 59, 0.5);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
+    .social-bar {
+      display: flex;
+      gap: 0.65rem;
     }
 
-    .btn-outline:hover {
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      transform: translateY(-1px);
-    }
-
-    /* Telemetry / Quick Metrics Bar */
-    .telemetry-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      padding: 1.25rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-    }
-
-    .telemetry-item {
-      padding: 0.5rem 0.75rem;
-      border-left: 2px solid var(--accent-cyan);
-    }
-
-    .telemetry-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
+    .icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
     }
 
-    .telemetry-value {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-top: 0.15rem;
+    .icon-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
     }
 
-    /* Logic Waveform Divider */
-    .waveform-bar {
-      margin: 2rem 0;
-      opacity: 0.35;
+    /* Hero Right: Interactive Hardware Visualizer Card */
+    .visualizer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.25rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      position: relative;
       overflow: hidden;
     }
 
-    /* Section Headers */
-    section {
-      padding: 4rem 0;
-    }
-
-    .section-header {
+    .vis-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2.25rem;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 0.85rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--accent-cyan);
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    #scopeCanvas {
+      width: 100%;
+      height: 210px;
+      background: #05070b;
+      border-radius: 10px;
+      border: 1px solid rgba(56, 189, 248, 0.15);
       display: block;
-      margin-bottom: 0.25rem;
     }
 
-    .section-title {
-      font-size: 1.65rem;
+    .vis-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+    }
+
+    .vis-stat-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      padding: 0.6rem;
+      border-radius: 8px;
+    }
+
+    .vis-stat-box span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.68rem;
+    }
+
+    .vis-stat-box strong {
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 5.5rem 0;
+    }
+
+    .sec-head {
+      margin-bottom: 3rem;
+    }
+
+    .sec-label {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .sec-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
       font-weight: 700;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
 
-    /* Filter Buttons */
-    .filter-group {
+    /* What I Build — 3-Card Bento Grid */
+    .domains-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .domain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .domain-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px -15px var(--accent-glow);
+    }
+
+    .domain-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      font-family: var(--mono);
+      font-weight: 700;
+    }
+
+    .domain-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .domain-card p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Project Showcase Cards */
+    .project-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .proj-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .proj-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-5px);
+    }
+
+    .proj-visual {
+      height: 175px;
+      background: linear-gradient(135deg, #0d1526 0%, #070b14 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .proj-badge {
+      align-self: flex-start;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .proj-diagram-mini {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      background: rgba(7, 9, 14, 0.75);
+      border: 1px dashed rgba(148, 163, 184, 0.3);
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+    }
+
+    .proj-body {
+      padding: 1.65rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-body h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.65rem;
+      line-height: 1.35;
+    }
+
+    .proj-story {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+      border: 1px solid var(--border);
+    }
+
+    .proj-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+
+    .proj-link {
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .proj-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Interactive UART Serial Console */
+    .terminal-wrapper {
+      background: #05070b;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7);
+    }
+
+    .terminal-bar {
+      background: #0f1420;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-cmds {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
+      padding: 0.85rem 1.25rem;
+      background: rgba(15, 20, 32, 0.5);
+      border-bottom: 1px solid var(--border);
     }
 
-    .filter-btn {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      padding: 0.35rem 0.75rem;
+    .cmd-chip {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
       border-radius: 6px;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       cursor: pointer;
       transition: all 0.2s;
     }
 
-    .filter-btn.active, .filter-btn:hover {
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      background: rgba(56, 189, 248, 0.08);
+    .cmd-chip:hover {
+      background: var(--accent);
+      color: #05070b;
     }
 
-    /* Project Cards */
-    .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
+    .terminal-screen {
+      padding: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      min-height: 210px;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      line-height: 1.7;
     }
 
-    .project-card {
+    /* Journey / Experience Cards */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .journey-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
       padding: 1.75rem;
-      transition: border-color 0.25s ease, transform 0.25s ease;
     }
 
-    .project-card:hover {
-      border-color: rgba(56, 189, 248, 0.5);
-      transform: translateY(-2px);
+    .journey-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent-2);
+      margin-bottom: 0.4rem;
+      display: block;
     }
 
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      flex-wrap: wrap;
+    .journey-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .journey-place {
+      color: var(--text-muted);
+      font-size: 0.9rem;
       margin-bottom: 1rem;
     }
 
-    .project-id {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent-teal);
-      letter-spacing: 0.05em;
-    }
-
-    .project-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-top: 0.2rem;
-    }
-
-    .tech-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .pill {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.25rem 0.65rem;
-      background: rgba(30, 41, 59, 0.8);
-      border: 1px solid #334155;
-      border-radius: 5px;
-      color: #e2e8f0;
-    }
-
-    /* Hardware Block Diagram inside Project Card */
-    .arch-diagram {
-      margin: 1.25rem 0;
-      padding: 1rem;
-      background: rgba(11, 15, 25, 0.75);
-      border: 1px dashed #334155;
-      border-radius: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      overflow-x: auto;
-    }
-
-    .arch-title {
-      color: var(--text-muted);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      margin-bottom: 0.65rem;
-      letter-spacing: 0.08em;
-    }
-
-    .arch-flow {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      min-width: max-content;
-    }
-
-    .arch-node {
-      padding: 0.45rem 0.75rem;
-      background: rgba(30, 41, 59, 0.9);
-      border: 1px solid var(--accent-cyan);
-      border-radius: 6px;
-      color: var(--text-main);
-    }
-
-    .arch-bus {
-      color: var(--accent-teal);
-      font-weight: 600;
-      padding: 0 0.25rem;
-    }
-
-    .project-bullets {
-      list-style: none;
-      margin-top: 1rem;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .project-bullets li {
+    /* Contact Section */
+    .contact-box {
+      background: linear-gradient(135deg, rgba(15, 20, 32, 0.9), rgba(7, 9, 14, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 3.5rem 2rem;
+      text-align: center;
       position: relative;
-      padding-left: 1.25rem;
-      margin-bottom: 0.5rem;
+      overflow: hidden;
     }
 
-    .project-bullets li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      color: var(--accent-cyan);
-      font-family: var(--font-mono);
+    .contact-box h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 0.75rem;
     }
 
-    /* Skills Matrix */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .skill-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.35rem;
-    }
-
-    .skill-box-title {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--accent-cyan);
-      margin-bottom: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    /* Timeline (Experience & Education) */
-    .timeline-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .timeline-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1.25rem;
-      position: relative;
-    }
-
-    .timeline-meta {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--accent-teal);
-      margin-bottom: 0.35rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .timeline-role {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .timeline-org {
-      font-size: 0.92rem;
+    .contact-box p {
       color: var(--text-muted);
-      margin-bottom: 0.85rem;
+      max-width: 520px;
+      margin: 0 auto 2rem;
     }
 
-    /* Footer / Contact */
     footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 3.5rem 0 2.5rem;
-      margin-top: 3rem;
-      background: rgba(11, 15, 25, 0.9);
-    }
-
-    .contact-card {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 2.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
+      padding: 2.5rem 0;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.78rem;
       color: var(--text-muted);
+      border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 680px) {
-      .nav-links { display: none; }
-      .hero { padding: 3.5rem 0 2.5rem; }
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 6.5rem;
+      }
+      .nav-links {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Floating Glass Navigation -->
   <header>
-    <div class="container nav-bar">
-      <a href="#" class="brand">
-        <span class="brand-dot"></span>
-        <span>AMMAR_MOHAMED.N</span> <!--[cite: 1] -->
-      </a>
+    <nav class="nav-pill">
+      <a href="#" class="logo"><span>&lt;/&gt;</span> amaruqq</a> <!--[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span) -->
       <ul class="nav-links">
-        <li><a href="#about">// about</a></li>
-        <li><a href="#projects">// projects</a></li>
-        <li><a href="#skills">// stack</a></li>
-        <li><a href="#experience">// experience & edu</a></li>
-        <li><a href="#contact">// contact</a></li>
+        <li><a href="#domains">What I Build</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#console">UART Console</a></li>
+        <li><a href="#journey">Journey</a></li>
       </ul>
-    </div>
+      <a href="#contact" class="nav-cta">Let's Talk</a>
+    </nav>
   </header>
 
   <main class="container">
-    <!-- Hero Section -->
-    <section id="about" class="hero">
-      <div class="status-pill">
-        <span class="pulse-dot"></span>
-        <span>SYS_READY :: Final Year B.Tech ECE (Cyber-Physical Systems) @ SASTRA</span> <!--[cite: 1] -->
-      </div>
-
-      <h1>Ammar Mohamed N</h1> <!--[cite: 1] -->
-      <div class="hero-subtitle">Embedded Firmware &amp; Digital Design</div> <!--[cite: 1, 3] -->
-
-      <div class="hero-bio">
-        <p>
-          I enjoy working close to the hardware—bridging the gap between embedded firmware, digital logic, and physical electronics. <!--[cite: 1] -->
+    <!-- Split Hero Section -->
+    <section class="hero">
+      <div>
+        <div class="hero-badge">
+          <span>●</span> Embedded Systems &amp; Digital Hardware <!--[span_15](start_span)[span_15](end_span) -->
+        </div>
+        <h1>
+          Hi, I'm <span class="gradient-text">Ammar Mohamed</span> <!--[span_16](start_span)[span_16](end_span)[span_17](start_span)[span_17](end_span) -->
+        </h1>
+        <div class="typewriter-row">
+          &gt; <span id="typewriter"></span><span class="cursor"></span>
+        </div>
+        <p class="hero-desc">
+          I enjoy working close to the hardware—bridging the gap between embedded firmware, digital logic, and physical electronics. Whether I’m building real-time systems on microcontrollers, designing digital architectures on FPGAs, or linking distributed nodes over CAN bus, I turn complex concepts into working prototypes. <!--[span_18](start_span)[span_18](end_span) -->
         </p>
-        <p>
-          Whether I’m developing real-time systems on microcontrollers, designing digital architectures on FPGAs, or integrating distributed hardware to communicate reliably, I love turning complex engineering concepts into working prototypes. I’m looking to bring my hands-on foundation in embedded systems and digital design to challenging roles in firmware and real-time engineering. <!--[cite: 1] -->
-        </p>
-      </div>
 
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">Explore Hardware Projects ↓</a>
-        <a href="https://www.linkedin.com/in/ammar-m-718a15300/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn Profile ↗</a> <!--[cite: 2] -->
-        <a href="mailto:ammarmohd3605@gmail.com" class="btn btn-outline">ammarmohd3605@gmail.com</a> <!--[cite: 1] -->
-      </div>
-
-      <!-- Quick Engineering Telemetry -->
-      <div class="telemetry-grid">
-        <div class="telemetry-item">
-          <div class="telemetry-label">Specialization</div>
-          <div class="telemetry-value">Cyber-Physical Systems</div> <!--[cite: 1] -->
-        </div>
-        <div class="telemetry-item">
-          <div class="telemetry-label">Academic Standing</div>
-          <div class="telemetry-value">8.63 CGPA @ SASTRA</div> <!--[cite: 1] -->
-        </div>
-        <div class="telemetry-item">
-          <div class="telemetry-label">Core Platforms</div>
-          <div class="telemetry-value">STM32 • MAX10 FPGA • RPi</div> <!--[cite: 1] -->
-        </div>
-        <div class="telemetry-item">
-          <div class="telemetry-label">Hardware Protocols</div>
-          <div class="telemetry-value">CAN • I²C • UART • SPI</div> <!--[cite: 1] -->
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">View Featured Work ↓</a>
+          <div class="social-bar">
+            <!-- GitHub -->
+            <a href="https://github.com/amaruqq" target="_blank" rel="noopener" class="icon-btn" title="GitHub (@amaruqq)"> <!--[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span) -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/ammar-m-718a15300/" target="_blank" rel="noopener" class="icon-btn" title="LinkedIn"> <!--[span_21](start_span)[span_21](end_span) -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:ammarmohd3605@gmail.com" class="icon-btn" title="Email"> <!--[span_22](start_span)[span_22](end_span) -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Subtle Logic Analyzer Clock Waveform SVG -->
-      <div class="waveform-bar" aria-hidden="true">
-        <svg width="100%" height="28" viewBox="0 0 1080 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 22 H60 V6 H120 V22 H180 V6 H240 V22 H330 V6 H390 V22 H450 V6 H540 V22 H600 V6 H660 V22 H720 V6 H780 V22 H870 V6 H930 V22 H990 V6 H1080" stroke="#38BDF8" stroke-width="1.5"/>
-        </svg>
+      <!-- Live Signal & Logic Analyzer Visualizer -->
+      <div class="visualizer-card">
+        <div class="vis-header">
+          <div class="window-dots">
+            <span style="background:#ef4444"></span>
+            <span style="background:#f59e0b"></span>
+            <span style="background:#10b981"></span>
+          </div>
+          <span>LOGIC_ANALYZER // CAN_500KBPS &amp; CLK</span> <!--[span_23](start_span)[span_23](end_span) -->
+        </div>
+        <canvas id="scopeCanvas" width="460" height="210"></canvas>
+        <div class="vis-stats">
+          <div class="vis-stat-box">
+            <span>MCU / SOC</span>
+            <strong>STM32 &amp; RPi</strong> <!--[span_24](start_span)[span_24](end_span) -->
+          </div>
+          <div class="vis-stat-box">
+            <span>FPGA TARGET</span>
+            <strong>Intel MAX10</strong> <!--[span_25](start_span)[span_25](end_span) -->
+          </div>
+          <div class="vis-stat-box">
+            <span>BUS STACK</span>
+            <strong>CAN • I²C • SPI</strong> <!--[span_26](start_span)[span_26](end_span) -->
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-      <div class="section-header">
-        <div>
-          <span class="section-tag">01 // HARDWARE &amp; FIRMWARE BUILDS</span>
-          <h2 class="section-title">Featured Engineering Projects</h2>
-        </div>
-        <div class="filter-group">
-          <button class="filter-btn active" onclick="filterProjects('all', this)">All_Systems (3)</button>
-          <button class="filter-btn" onclick="filterProjects('embedded', this)">STM32_CAN_Embedded</button>
-          <button class="filter-btn" onclick="filterProjects('fpga', this)">FPGA_SystemVerilog</button>
-        </div>
+    <!-- What I Build (Core Domains) -->
+    <section id="domains">
+      <div class="sec-head">
+        <span class="sec-label">// 01. Core Engineering Domains</span>
+        <h2 class="sec-title">Where Software Meets Silicon</h2>
       </div>
 
-      <div class="projects-grid">
+      <div class="domains-grid">
+        <div class="domain-card">
+          <div class="domain-icon">MCU</div>
+          <h3>Embedded Firmware</h3> <!--[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span) -->
+          <p>
+            Writing bare-metal Embedded C and configuring low-level peripherals (GPIO, Timers, Interrupts) across STM32, ESP32, and PIC microcontrollers with a focus on real-time determinism. <!--[span_29](start_span)[span_29](end_span) -->
+          </p>
+          <div class="tag-row">
+            <span class="tag">Embedded C</span> <!--[span_30](start_span)[span_30](end_span) -->
+            <span class="tag">STM32CubeIDE</span> <!--[span_31](start_span)[span_31](end_span) -->
+            <span class="tag">QNX RTOS</span> <!--[span_32](start_span)[span_32](end_span) -->
+            <span class="tag">Bare-Metal</span> <!--[span_33](start_span)[span_33](end_span) -->
+          </div>
+        </div>
+
+        <div class="domain-card">
+          <div class="domain-icon">RTL</div>
+          <h3>FPGA &amp; Digital Design</h3> <!--[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span) -->
+          <p>
+            Designing custom hardware pipelines, Finite State Machines (FSMs), memory controllers, and VGA timing generators in SystemVerilog and Verilog on Intel MAX10 FPGAs. <!--[span_36](start_span)[span_36](end_span) -->
+          </p>
+          <div class="tag-row">
+            <span class="tag">SystemVerilog</span> <!--[span_37](start_span)[span_37](end_span) -->
+            <span class="tag">Intel MAX10</span> <!--[span_38](start_span)[span_38](end_span) -->
+            <span class="tag">Quartus Prime</span> <!--[span_39](start_span)[span_39](end_span) -->
+            <span class="tag">FSM</span> <!--[span_40](start_span)[span_40](end_span) -->
+          </div>
+        </div>
+
+        <div class="domain-card">
+          <div class="domain-icon">CAN</div>
+          <h3>Distributed &amp; Cyber-Physical Systems</h3> <!--[span_41](start_span)[span_41](end_span) -->
+          <p>
+            Integrating multi-node E/E architectures where edge vision (OpenCV on Raspberry Pi) communicates with real-time actuation nodes over 500-kbps CAN, UART, I²C, and SPI. <!--[span_42](start_span)[span_42](end_span) -->
+          </p>
+          <div class="tag-row">
+            <span class="tag">CAN Bus</span> <!--[span_43](start_span)[span_43](end_span) -->
+            <span class="tag">I²C / UART / SPI</span> <!--[span_44](start_span)[span_44](end_span) -->
+            <span class="tag">Raspberry Pi</span> <!--[span_45](start_span)[span_45](end_span) -->
+            <span class="tag">OpenCV</span> <!--[span_46](start_span)[span_46](end_span) -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects (Story & Architecture Driven) -->
+    <section id="projects">
+      <div class="sec-head">
+        <span class="sec-label">// 02. Featured Builds</span>
+        <h2 class="sec-title">Hardware &amp; Systems Portfolio</h2>
+      </div>
+
+      <div class="project-showcase">
         <!-- Project 1 -->
-        <article class="project-card" data-category="embedded">
-          <div class="project-top">
-            <div>
-              <span class="project-id">PRJ_01 // AUTOMOTIVE E/E ARCHITECTURE &amp; AUTONOMOUS NAVIGATION</span>
-              <h3 class="project-title">CAN-Based Distributed E/E Architecture for Autonomous Robotic Vehicle</h3> <!--[cite: 1] -->
-            </div>
-            <div class="tech-pills">
-              <span class="pill">STM32F103C8T6</span> <!--[cite: 1] -->
-              <span class="pill">Raspberry Pi</span> <!--[cite: 1] -->
-              <span class="pill">500-kbps CAN</span> <!--[cite: 1] -->
-              <span class="pill">Embedded C</span> <!--[cite: 1] -->
-              <span class="pill">OpenCV</span> <!--[cite: 1] -->
+        <article class="proj-card">
+          <div class="proj-visual">
+            <span class="proj-badge">Automotive E/E • Multi-ECU</span> <!--[span_47](start_span)[span_47](end_span) -->
+            <div class="proj-diagram-mini">
+              [RPi OpenCV HMI] ◄═ 500kbps CAN ═► [STM32 Safety &amp; Motor ECUs] <!--[span_48](start_span)[span_48](end_span) -->
             </div>
           </div>
-
-          <div class="arch-diagram">
-            <div class="arch-title">System Bus Topology</div>
-            <div class="arch-flow">
-              <span class="arch-node">[RPi: OpenCV Perception &amp; HMI ECU]</span> <!--[cite: 1] -->
-              <span class="arch-bus">◄══ 500-kbps CAN Bus (Safety Interlock) ══►</span> <!--[cite: 1] -->
-              <span class="arch-node">[STM32: Sensor/Safety ECU]</span> <!--[cite: 1] -->
-              <span class="arch-bus">◄══►</span>
-              <span class="arch-node">[STM32: Motor Control ECU]</span> <!--[cite: 1] -->
+          <div class="proj-body">
+            <h3>CAN-Based Distributed E/E Architecture for Autonomous Vehicle</h3> <!--[span_49](start_span)[span_49](end_span) -->
+            <p class="proj-story">
+              Architected a multi-ECU robotic vehicle separating high-level lane and traffic-signal perception (OpenCV on Raspberry Pi) from time-critical sensor acquisition and motor actuation on STM32F103C8T6 nodes over a 500-kbps CAN bus with hardware safety interlocks. <!--[span_50](start_span)[span_50](end_span) -->
+            </p>
+            <div class="tag-row">
+              <span class="tag">STM32F103C8T6</span> <!--[span_51](start_span)[span_51](end_span) -->
+              <span class="tag">Raspberry Pi</span> <!--[span_52](start_span)[span_52](end_span) -->
+              <span class="tag">CAN Protocol</span> <!--[span_53](start_span)[span_53](end_span) -->
+              <span class="tag">Embedded C</span> <!--[span_54](start_span)[span_54](end_span) -->
+              <span class="tag">OpenCV</span> <!--[span_55](start_span)[span_55](end_span) -->
+            </div>
+            <div class="proj-footer">
+              <span>FSM Navigation &amp; Safety Interlock</span> <!--[span_56](start_span)[span_56](end_span) -->
+              <a href="https://github.com/amaruqq" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a> <!--[span_57](start_span)[span_57](end_span)[span_58](start_span)[span_58](end_span) -->
             </div>
           </div>
-
-          <ul class="project-bullets">
-            <li>Developed distributed Motor, Sensor/Safety, and HMI ECUs with Raspberry Pi for autonomous vehicle functions.</li> <!--[cite: 1] -->
-            <li>Implemented STM32 firmware in Embedded C for real-time sensor acquisition and actuator interfacing in a real-time navigation system.</li> <!--[cite: 1] -->
-            <li>Established 500-kbps CAN communication between ECUs with safety messaging and motor-stop safety interlock.</li> <!--[cite: 1] -->
-            <li>Designed Finite State Machine (FSM)-based navigation control driven by OpenCV lane and traffic-signal perception.</li> <!--[cite: 1] -->
-          </ul>
         </article>
 
         <!-- Project 2 -->
-        <article class="project-card" data-category="fpga">
-          <div class="project-top">
-            <div>
-              <span class="project-id">PRJ_02 // RTL DESIGN &amp; HARDWARE VISION PIPELINE</span>
-              <h3 class="project-title">FPGA Camera Display System</h3> <!--[cite: 1] -->
-            </div>
-            <div class="tech-pills">
-              <span class="pill">SystemVerilog</span> <!--[cite: 1] -->
-              <span class="pill">Intel MAX10 FPGA</span> <!--[cite: 1] -->
-              <span class="pill">OV7670</span> <!--[cite: 1] -->
-              <span class="pill">VGA</span> <!--[cite: 1] -->
-              <span class="pill">I²C &amp; UART</span> <!--[cite: 1] -->
+        <article class="proj-card">
+          <div class="proj-visual">
+            <span class="proj-badge">FPGA • RTL Vision Pipeline</span> <!--[span_59](start_span)[span_59](end_span) -->
+            <div class="proj-diagram-mini">
+              [OV7670 Sensor] ──I²C/Capture──► [MAX10 Frame Buffer] ──► [VGA Out] <!--[span_60](start_span)[span_60](end_span) -->
             </div>
           </div>
-
-          <div class="arch-diagram">
-            <div class="arch-title">RTL Hardware Data Pipeline</div>
-            <div class="arch-flow">
-              <span class="arch-node">[OV7670 Camera]</span> <!--[cite: 1] -->
-              <span class="arch-bus">── I²C Config / Pixel Capture ──►</span> <!--[cite: 1] -->
-              <span class="arch-node">[MAX10 On-Chip Frame Buffer]</span> <!--[cite: 1] -->
-              <span class="arch-bus">── Memory Ctrl ──►</span> <!--[cite: 1] -->
-              <span class="arch-node">[VGA Timing 160×120 RGB444]</span> <!--[cite: 1] -->
+          <div class="proj-body">
+            <h3>FPGA Real-Time Camera-to-VGA Display Pipeline</h3> <!--[span_61](start_span)[span_61](end_span) -->
+            <p class="proj-story">
+              Built a pure-hardware video pipeline in SystemVerilog on an Intel MAX10 FPGA. Configured an OV7670 camera over I²C to stream 160×120 RGB444 frames into custom on-chip dual-port memory buffers with dedicated VGA synchronization and UART debug telemetry. <!--[span_62](start_span)[span_62](end_span) -->
+            </p>
+            <div class="tag-row">
+              <span class="tag">SystemVerilog</span> <!--[span_63](start_span)[span_63](end_span) -->
+              <span class="tag">Intel MAX10 FPGA</span> <!--[span_64](start_span)[span_64](end_span) -->
+              <span class="tag">OV7670</span> <!--[span_65](start_span)[span_65](end_span) -->
+              <span class="tag">VGA Timing</span> <!--[span_66](start_span)[span_66](end_span) -->
+              <span class="tag">I²C &amp; UART</span> <!--[span_67](start_span)[span_67](end_span) -->
+            </div>
+            <div class="proj-footer">
+              <span>Zero-CPU RTL Video Streaming</span> <!--[span_68](start_span)[span_68](end_span) -->
+              <a href="https://github.com/amaruqq" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a> <!--[span_69](start_span)[span_69](end_span)[span_70](start_span)[span_70](end_span) -->
             </div>
           </div>
-
-          <ul class="project-bullets">
-            <li>Developed an FPGA-based camera pipeline using OV7670, capturing 160×120 RGB444 frames for real-time VGA display.</li> <!--[cite: 1] -->
-            <li>Implemented I²C-based camera register configuration, pixel capture, and on-chip image buffering.</li> <!--[cite: 1] -->
-            <li>Designed the camera interface, frame buffer, memory controller, and VGA timing logic in SystemVerilog.</li> <!--[cite: 1] -->
-            <li>Implemented UART support for hardware debugging and image-data transfer.</li> <!--[cite: 1] -->
-          </ul>
         </article>
 
         <!-- Project 3 -->
-        <article class="project-card" data-category="embedded">
-          <div class="project-top">
-            <div>
-              <span class="project-id">PRJ_03 // EMBEDDED CONTROL &amp; SENSOR FUSION</span>
-              <h3 class="project-title">Autonomous Line Follower Robot</h3> <!--[cite: 1] -->
-            </div>
-            <div class="tech-pills">
-              <span class="pill">Embedded C</span> <!--[cite: 1] -->
-              <span class="pill">IR Sensor Array</span> <!--[cite: 1] -->
-              <span class="pill">Differential Motor Driver</span> <!--[cite: 1] -->
+        <article class="proj-card">
+          <div class="proj-visual">
+            <span class="proj-badge">Embedded Control • Robotics</span> <!--[span_71](start_span)[span_71](end_span) -->
+            <div class="proj-diagram-mini">
+              [IR Sensor Array] ──Calibration──► [Embedded C Control] ──► [PWM Drive] <!--[span_72](start_span)[span_72](end_span) -->
             </div>
           </div>
-
-          <ul class="project-bullets">
-            <li>Developed a line-following robot using an IR sensor array for path detection and differential motor control.</li> <!--[cite: 1] -->
-            <li>Implemented sensor calibration and decision logic for reliable path tracking under varying surface conditions.</li> <!--[cite: 1] -->
-            <li>Integrated sensor inputs with embedded firmware for reliable real-time navigation.</li> <!--[cite: 1] -->
-          </ul>
+          <div class="proj-body">
+            <h3>Autonomous Differential-Drive Path Tracking Robot</h3> <!--[span_73](start_span)[span_73](end_span) -->
+            <p class="proj-story">
+              Engineered a real-time line-following robotic platform in Embedded C featuring dynamic IR sensor array calibration, surface-adaptive decision logic, and differential motor actuation for high-reliability path tracking. <!--[span_74](start_span)[span_74](end_span) -->
+            </p>
+            <div class="tag-row">
+              <span class="tag">Embedded C</span> <!--[span_75](start_span)[span_75](end_span) -->
+              <span class="tag">Sensor Calibration</span> <!--[span_76](start_span)[span_76](end_span) -->
+              <span class="tag">Motor Control</span> <!--[span_77](start_span)[span_77](end_span) -->
+            </div>
+            <div class="proj-footer">
+              <span>Real-Time Closed-Loop Control</span> <!--[span_78](start_span)[span_78](end_span) -->
+              <a href="https://github.com/amaruqq" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a> <!--[span_79](start_span)[span_79](end_span)[span_80](start_span)[span_80](end_span) -->
+            </div>
+          </div>
         </article>
       </div>
     </section>
 
-    <!-- Technical Skills Section -->
-    <section id="skills">
-      <div class="section-header">
-        <div>
-          <span class="section-tag">02 // TECHNICAL ARSENAL</span>
-          <h2 class="section-title">Hardware, Firmware &amp; Protocols</h2>
-        </div>
+    <!-- Interactive UART Serial Console -->
+    <section id="console">
+      <div class="sec-head">
+        <span class="sec-label">// 03. Interactive Hardware Shell</span>
+        <h2 class="sec-title">Query My Stack via UART</h2> <!--[span_81](start_span)[span_81](end_span) -->
       </div>
 
-      <div class="skills-grid">
-        <div class="skill-box">
-          <div class="skill-box-title">&gt;_ Programming &amp; HDLs</div>
-          <div class="tech-pills">
-            <span class="pill">Embedded C</span> <!--[cite: 1] -->
-            <span class="pill">C</span> <!--[cite: 1] -->
-            <span class="pill">C++</span> <!--[cite: 1] -->
-            <span class="pill">SystemVerilog</span> <!--[cite: 1] -->
-            <span class="pill">Verilog</span> <!--[cite: 1] -->
-            <span class="pill">Python</span> <!--[cite: 1] -->
-          </div>
+      <div class="terminal-wrapper">
+        <div class="terminal-bar">
+          <span>/dev/ttyUSB0 — 115200 8N1</span>
+          <span>CLICK A COMMAND BELOW TO EXECUTE</span>
+        </div>
+        <div class="terminal-cmds">
+          <button class="cmd-chip" onclick="runCmd('whoami')">$ whoami</button>
+          <button class="cmd-chip" onclick="runCmd('stack')">$ ls /skills</button>
+          <button class="cmd-chip" onclick="runCmd('can')">$ can_status</button>
+          <button class="cmd-chip" onclick="runCmd('fpga')">$ fpga_info</button>
+          <button class="cmd-chip" onclick="runCmd('contact')">$ ping ammar</button>
+        </div>
+        <div class="terminal-screen" id="termOutput">&gt; [SYS_BOOT] UART0 initialized @ 115200 baud...
+&gt; [READY] Select a command above to inspect Ammar's hardware profile.</div> <!--[span_82](start_span)[span_82](end_span) -->
+      </div>
+    </section>
+
+    <!-- Experience & Academic Journey (Clean, No High-School Clutter) -->
+    <section id="journey">
+      <div class="sec-head">
+        <span class="sec-label">// 04. Background</span>
+        <h2 class="sec-title">Experience &amp; Engineering Journey</h2>
+      </div>
+
+      <div class="journey-grid">
+        <div class="journey-card">
+          <span class="journey-date">JUN 2025 – JUL 2025</span> <!--[span_83](start_span)[span_83](end_span) -->
+          <h3>Embedded Systems Intern</h3> <!--[span_84](start_span)[span_84](end_span) -->
+          <div class="journey-place">IQuants Engineering Ltd • Coimbatore</div> <!--[span_85](start_span)[span_85](end_span) -->
+          <p style="color: var(--text-muted); font-size: 0.92rem;">
+            Developed and debugged bare-metal firmware across STM32 Blue Pill and PIC microcontrollers using STM32CubeIDE, translating complex peripheral datasheets into working hardware-software integration workflows. <!--[span_86](start_span)[span_86](end_span) -->
+          </p>
         </div>
 
-        <div class="skill-box">
-          <div class="skill-box-title">&gt;_ Embedded Systems &amp; MCUs</div>
-          <div class="tech-pills">
-            <span class="pill">STM32 (Blue Pill / F103)</span> <!--[cite: 1] -->
-            <span class="pill">ESP32</span> <!--[cite: 1] -->
-            <span class="pill">Raspberry Pi</span> <!--[cite: 1] -->
-            <span class="pill">PIC Microcontrollers</span> <!--[cite: 1] -->
-            <span class="pill">RTOS Fundamentals (QNX)</span> <!--[cite: 1] -->
-            <span class="pill">GPIO / Timers / Interrupts</span> <!--[cite: 1] -->
-          </div>
-        </div>
-
-        <div class="skill-box">
-          <div class="skill-box-title">&gt;_ Communication Protocols</div>
-          <div class="tech-pills">
-            <span class="pill">CAN Bus</span> <!--[cite: 1] -->
-            <span class="pill">UART</span> <!--[cite: 1] -->
-            <span class="pill">I²C (I2C)</span> <!--[cite: 1] -->
-            <span class="pill">SPI</span> <!--[cite: 1] -->
-          </div>
-        </div>
-
-        <div class="skill-box">
-          <div class="skill-box-title">&gt;_ Digital Design &amp; Tools</div>
-          <div class="tech-pills">
-            <span class="pill">Intel MAX10 FPGA</span> <!--[cite: 1] -->
-            <span class="pill">Quartus Prime</span> <!--[cite: 1] -->
-            <span class="pill">STM32CubeIDE</span> <!--[cite: 1] -->
-            <span class="pill">FSM Design</span> <!--[cite: 1] -->
-            <span class="pill">Schematic Reading</span> <!--[cite: 1] -->
-            <span class="pill">Linux</span> <!--[cite: 1] -->
-            <span class="pill">OpenCV</span> <!--[cite: 1] -->
-            <span class="pill">Arduino IDE</span> <!--[cite: 1] -->
-          </div>
+        <div class="journey-card">
+          <span class="journey-date">2023 – 2027</span> <!--[span_87](start_span)[span_87](end_span) -->
+          <h3>B.Tech in ECE (Cyber-Physical Systems)</h3> <!--[span_88](start_span)[span_88](end_span) -->
+          <div class="journey-place">SASTRA Deemed University • Thanjavur</div> <!--[span_89](start_span)[span_89](end_span) -->
+          <p style="color: var(--text-muted); font-size: 0.92rem;">
+            Final-year undergraduate specializing in Cyber-Physical Systems (CGPA: 8.63), with hands-on workshop training in QNX Real-Time Operating Systems (RTOS) and Digital Twin sensor simulation. <!--[span_90](start_span)[span_90](end_span) -->
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Experience, Education & Workshops -->
-    <section id="experience">
-      <div class="section-header">
-        <div>
-          <span class="section-tag">03 // BACKGROUND &amp; CREDENTIALS</span>
-          <h2 class="section-title">Experience, Education &amp; Workshops</h2>
-        </div>
-      </div>
-
-      <div class="timeline-grid">
-        <!-- Left Column: Internship & Workshops -->
-        <div>
-          <div class="timeline-card">
-            <div class="timeline-meta">
-              <span>INDUSTRY INTERNSHIP</span>
-              <span>06/2025 – 07/2025</span> <!--[cite: 1] -->
-            </div>
-            <div class="timeline-role">Embedded Systems Intern</div> <!--[cite: 1] -->
-            <div class="timeline-org">IQuants Engineering Ltd • Coimbatore, India</div> <!--[cite: 1] -->
-            <ul class="project-bullets">
-              <li>Worked hands-on with STM32 Blue Pill and PIC microcontrollers using STM32CubeIDE for embedded firmware development and debugging workflows.</li> <!--[cite: 1] -->
-              <li>Translated microcontroller datasheets into peripheral configurations and hardware-software integration code.</li> <!--[cite: 1] -->
-            </ul>
-          </div>
-
-          <div class="timeline-card">
-            <div class="timeline-meta">
-              <span>CERTIFICATES &amp; WORKSHOPS</span> <!--[cite: 1] -->
-              <span>CONTINUOUS LEARNING</span>
-            </div>
-            <div class="timeline-role">Real-Time Systems &amp; Digital Twins</div>
-            <ul class="project-bullets" style="margin-top: 0.75rem;">
-              <li><strong>QNX RTOS:</strong> Covered core Real-Time Operating System principles, scheduling, and fundamentals.</li> <!--[cite: 1] -->
-              <li><strong>Digital Twin Workshop:</strong> Explored Twin Simulate for sensor integration and real-time hardware monitoring using Arduino.</li> <!--[cite: 1] -->
-            </ul>
-          </div>
-        </div>
-
-        <!-- Right Column: Education -->
-        <div>
-          <div class="timeline-card">
-            <div class="timeline-meta">
-              <span>UNDERGRADUATE DEGREE</span>
-              <span>2023 – 2027</span> <!--[cite: 1] -->
-            </div>
-            <div class="timeline-role">B.Tech Electronics &amp; Communication Engineering</div> <!--[cite: 1] -->
-            <div class="timeline-org">Specialization: Cyber-Physical Systems • SASTRA University, Thanjavur</div> <!--[cite: 1] -->
-            <div class="pill" style="display:inline-block; border-color: var(--accent-cyan); color: var(--accent-cyan);">
-              CGPA: 8.63 / 10.0 <!--[cite: 1] -->
-            </div>
-          </div>
-
-          <div class="timeline-card">
-            <div class="timeline-meta">
-              <span>SENIOR SECONDARY (CLASS XII)</span> <!--[cite: 1] -->
-              <span>2022 – 2023</span> <!--[cite: 1] -->
-            </div>
-            <div class="timeline-role">Suguna PIP School, Coimbatore</div> <!--[cite: 1] -->
-            <div class="timeline-org">Score: 84.4%</div> <!--[cite: 1] -->
-          </div>
-
-          <div class="timeline-card">
-            <div class="timeline-meta">
-              <span>SECONDARY SCHOOL (CLASS X)</span> <!--[cite: 1] -->
-              <span>2020 – 2021</span> <!--[cite: 1] -->
-            </div>
-            <div class="timeline-role">Saratha International Senior Secondary School, Erode</div> <!--[cite: 1] -->
-            <div class="timeline-org">Score: 93.4%</div> <!--[cite: 1] -->
-          </div>
+    <!-- Contact CTA -->
+    <section id="contact">
+      <div class="contact-box">
+        <span class="sec-label">// 05. What's Next?</span>
+        <h2>Let's Build Something Close to the Metal</h2>
+        <p>
+          I'm actively looking for full-time opportunities and collaborations in Embedded Firmware, Digital Design, and Real-Time Systems. <!--[span_91](start_span)[span_91](end_span)[span_92](start_span)[span_92](end_span) -->
+        </p>
+        <div class="hero-btns" style="justify-content: center;">
+          <a href="mailto:ammarmohd3605@gmail.com" class="btn-primary">Say Hello (ammarmohd3605@gmail.com)</a> <!--[span_93](start_span)[span_93](end_span) -->
+          <a href="https://www.linkedin.com/in/ammar-m-718a15300/" target="_blank" rel="noopener" class="icon-btn" title="LinkedIn">in</a> <!--[span_94](start_span)[span_94](end_span) -->
+          <a href="https://github.com/amaruqq" target="_blank" rel="noopener" class="icon-btn" title="GitHub">GH</a> <!--[span_95](start_span)[span_95](end_span)[span_96](start_span)[span_96](end_span) -->
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer / Contact Section -->
-  <footer id="contact">
+  <footer>
     <div class="container">
-      <div class="contact-card">
-        <div>
-          <span class="section-tag">04 // INITIALIZE CONNECTION</span>
-          <h2 style="font-size: 1.5rem; margin-bottom: 0.4rem;">Open to Embedded Firmware &amp; Digital Design Roles</h2> <!--[cite: 1, 3] -->
-          <p style="color: var(--text-muted); font-size: 0.95rem;">
-            Based in Tamil Nadu, India (Erode / Srirangam / Thanjavur) • Available for full-time opportunities and collaborations. <!--[cite: 1, 2] -->
-          </p>
-        </div>
-        <div style="display: flex; gap: 0.85rem; flex-wrap: wrap;">
-          <a href="mailto:ammarmohd3605@gmail.com" class="btn btn-primary">Email Me</a> <!--[cite: 1] -->
-          <a href="tel:+918248355362" class="btn btn-outline">+91 82483 55362</a> <!--[cite: 1] -->
-          <a href="https://www.linkedin.com/in/ammar-m-718a15300/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn ↗</a> <!--[cite: 2] -->
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>© 2026 Ammar Mohamed N. Engineered with clean HTML/CSS.</span> <!--[cite: 1] -->
-        <span>STM32 • MAX10 FPGA • Embedded C • SystemVerilog</span> <!--[cite: 1] -->
-      </div>
+      Designed &amp; Engineered by Ammar Mohamed N (@amaruqq) • Hosted on GitHub Pages <!--[span_97](start_span)[span_97](end_span)[span_98](start_span)[span_98](end_span)[span_99](start_span)[span_99](end_span) -->
     </div>
   </footer>
 
-  <!-- Interactive Project Filter Script -->
   <script>
-    function filterProjects(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.project-card').forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+    // 1. Hero Typewriter Effect
+    const roles = [
+      "Embedded Firmware & Bare-Metal C", //[span_100](start_span)[span_100](end_span)[span_101](start_span)[span_101](end_span)
+      "FPGA & SystemVerilog RTL Design", //[span_102](start_span)[span_102](end_span)[span_103](start_span)[span_103](end_span)
+      "CAN Bus & Distributed Cyber-Physical Systems", //[span_104](start_span)[span_104](end_span)
+      "Final-Year ECE Undergrad @ SASTRA" //[span_105](start_span)[span_105](end_span)[span_106](start_span)[span_106](end_span)
+    ];
+    let roleIdx = 0, charIdx = 0, deleting = false;
+    const typeEl = document.getElementById("typewriter");
+
+    function tickTypewriter() {
+      const current = roles[roleIdx];
+      typeEl.textContent = current.substring(0, charIdx);
+      if (!deleting && charIdx < current.length) {
+        charIdx++;
+        setTimeout(tickTypewriter, 55);
+      } else if (deleting && charIdx > 0) {
+        charIdx--;
+        setTimeout(tickTypewriter, 30);
+      } else {
+        deleting = !deleting;
+        if (!deleting) roleIdx = (roleIdx + 1) % roles.length;
+        setTimeout(tickTypewriter, deleting ? 1600 : 300);
+      }
+    }
+    tickTypewriter();
+
+    // 2. Live Oscilloscope / Digital Clock Canvas
+    const canvas = document.getElementById("scopeCanvas");
+    const ctx = canvas.getContext("2d");
+    let phase = 0;
+
+    function drawScope() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Subtle Grid
+      ctx.strokeStyle = "rgba(148, 163, 184, 0.08)";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 35) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += 35) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Top Trace: Digital Square Wave (FPGA Clock / CAN Frame)
+      ctx.strokeStyle = "#38bdf8";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let x = 0; x < canvas.width; x++) {
+        const bit = Math.sin((x + phase * 2.5) * 0.08) > 0 ? 45 : 85;
+        if (x === 0) ctx.moveTo(x, bit);
+        else ctx.lineTo(x, bit);
+      }
+      ctx.stroke();
+
+      // Bottom Trace: Analog Sensor Acquisition Wave
+      ctx.strokeStyle = "#2dd4bf";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let x = 0; x < canvas.width; x++) {
+        const y = 150 + Math.sin((x + phase) * 0.04) * 22 + Math.cos((x - phase) * 0.09) * 8;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      phase += 1.4;
+      requestAnimationFrame(drawScope);
+    }
+    drawScope();
+
+    // 3. Interactive UART Console Commands
+    const responses = {
+      whoami: `> $ whoami
+Ammar Mohamed N — Final-year B.Tech ECE (Cyber-Physical Systems) @ SASTRA University.
+Passionate about working close to the hardware across microcontrollers, FPGAs, and real-time protocols.`, //[span_107](start_span)[span_107](end_span)
+      stack: `> $ ls /skills
+[LANGUAGES]  Embedded C, C, C++, SystemVerilog, Verilog, Python
+[HARDWARE]   STM32 (F103/Blue Pill), Intel MAX10 FPGA, Raspberry Pi, ESP32, PIC
+[PROTOCOLS]  CAN (500-kbps), I2C, UART, SPI
+[TOOLS]      STM32CubeIDE, Quartus Prime, Linux, OpenCV, QNX RTOS`, //[span_108](start_span)[span_108](end_span)
+      can: `> $ can_status
+[BUS_STATE]  ONLINE @ 500 kbps
+[NODES]      1x Raspberry Pi (OpenCV Perception & HMI) + 2x STM32F103 (Motor & Safety ECUs)
+[SAFETY]     Hardware motor-stop interlock & FSM navigation active.`, //[span_109](start_span)[span_109](end_span)
+      fpga: `> $ fpga_info
+[DEVICE]     Intel MAX10 FPGA
+[PIPELINE]   OV7670 Camera (I2C Config) -> Pixel Capture -> Frame Buffer -> 160x120 RGB444 VGA
+[DEBUG]      UART hardware telemetry enabled.`, //[span_110](start_span)[span_110](end_span)
+      contact: `> $ ping ammar
+[EMAIL]      ammarmohd3605@gmail.com
+[PHONE]      +91 82483 55362
+[GITHUB]     https://github.com/amaruqq
+[LINKEDIN]   https://www.linkedin.com/in/ammar-m-718a15300/` //[span_111](start_span)[span_111](end_span)[span_112](start_span)[span_112](end_span)[span_113](start_span)[span_113](end_span)[span_114](start_span)[span_114](end_span)
+    };
+
+    function runCmd(key) {
+      const out = document.getElementById("termOutput");
+      out.textContent = responses[key];
     }
   </script>
 </body>
